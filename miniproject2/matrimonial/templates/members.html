@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}Members{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+<!-- banner start-->
+<style>
+    .banner {
+        background: url("../../static/images/bg/banner1.jpg");
+        background-size: cover;
+    }
+</style>
+<div class="banner">
+    <div class="overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                <div class="header-text">
+                    <h2>Active Members</h2>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- banner end -->
+
+<!-- members start -->
+<section class="members-section">
+            <div class="container">
+                <div class="row gy-5 g-md-4">
+
+
+
+                    <!------------------ Members Profile ------------->
+                    <div class="col-lg-12">
+                        {% for user in users %}
+
+                            <div class="member-box d-md-flex">
+                                <div class="img-box">
+                                    {% if user.profile_image %}
+                                        <img src="{{ user.profile_image.url }}" class="" alt="member post image" height="194px" width="194px">
+                                    {% else %}
+                                        <img src="{% static 'images/bg/not_found.png' %}" class="" alt="member post image" height="194px" width="194px">
+                                    {% endif %}
+                                </div>
+
+                                <div>
+                                    <h5 class="name">{{ user.first_name }} {{ user.last_name }}</h5>
+                                    <div class="row g-2 mt-3 member-info">
+                                        <div class="col-6">
+                                            <span>age : {{ user.age }} years</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <span>gender : {{ user.gender }}</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <span>height : {{ user.height }} cm</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <span>weight : {{ user.weight }} kg</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <span>religion : {{ user.religion_type }}</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <span>location : {{ user.location_type }}</span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="button-group">
+
+                                        <a href="{% url 'send_friend_request' user.id %}">
+                                                <i class="fal fa-heart" aria-hidden="true"></i>
+                                                <span>Make Interest</span>
+                                        </a>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        {% endfor %}
+                        <div class="row py-5">
+                            <nav>
+
+    </nav>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+<!-- member end -->
+
+{% endblock %}

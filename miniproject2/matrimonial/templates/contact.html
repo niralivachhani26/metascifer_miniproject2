@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+<!-- banner start-->
+<style>
+    .banner {
+        background: url("../../static/images/bg/banner1.jpg");
+        background-size: cover;
+    }
+</style>
+<div class="banner">
+    <div class="overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                <div class="header-text">
+                    <h2>Contact Us</h2>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- banner end -->
+
+<!-- contact start -->
+<section class="contact-info">
+        <div class="container">
+            <div class="row g-3 g-md-5">
+                <div class="col-lg-4 col-md-6">
+                    <div class="box">
+                    <div class="icon-box">
+                        <i class="fal fa-map-marker-alt" aria-hidden="true"></i>
+                    </div>
+                    <div class="text-box">
+                        <h4>Address</h4>
+                        <p></p><p><span><span>7 Green Lake Street&nbsp;</span></span><span>Crawfordsville, IN 47933</span></p><p></p>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="box">
+                    <div class="icon-box">
+                        <i class="fal fa-envelope" aria-hidden="true"></i>
+                    </div>
+                    <div class="text-box">
+                        <h4>Email us</h4>
+                        <p>info@metrimony.com <br>support@matrimony.com</p>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mx-auto">
+                    <div class="box">
+                    <div class="icon-box">
+                        <i class="fal fa-phone-alt" aria-hidden="true"></i>
+                    </div>
+                    <div class="text-box">
+                        <h4>Call Now</h4>
+                        <p>
+                            +1 800 123 456 789<br>
+                            +1 800 123 654 987                        </p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+<!-- contact end -->
+<!-- contact form -->
+<section class="contact-form">
+        <div class="container">
+            <div class="row align-items-center justify-content-between gy-5 g-lg-5">
+                <div class="col-lg-6">
+                    <div class="text-box">
+                    <h2>get in touch</h2>
+                    <img src="{% static 'images/bg/contact.png' %}" alt="contact image" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="alert alert-{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="row g-3 g-md-4">
+                            {{ form.as_p }}
+                            <div class="col-12">
+                                <button class="btn-flower" type="submit">submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- contact form end -->
+
+{% endblock %}

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" style="--primary: #f3ddcf; --secondary: #fb846f;">
+{% load static %}
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="Wedding Wonders - is a matchmaking and matrimonial platforms.
+        It’s ideal for people all over the world to help them find their soulmates.
+        User can share their information with others and they can choose their desired life partner using this platform.
+        thousands of people will be met their life partners through our revolutionary matchmaking service.">
+        <meta name="keywords" content="matrimonial, matrimony, matrimonials,  marriage, marriage sites, matchmaking, shaadi, wedding, lifepartnar, Matchmaking, bridal, bride, Wedding planner, wedding website, dating">
+        <title>{% block title %}Wedding Wonders{% endblock %}</title>
+        <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.png' %}">
+
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+        <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/flag-icon.min.css' %}">
+        <script src="{% static 'js/fontawesomepro.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/fontawesomepro.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container-fluid" id="pushNotificationArea">
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'images/bg/logo.png' %}" alt="Wedding Wonders">
+            </a>
+            <button class="navbar-toggler p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fal fa-bars" aria-hidden="true"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'members' %}">Members</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <span class="navbar-text">
+                                    <div class="notification-panel pe-3">
+                        <button class="dropdown-toggle">
+                            <i class="fal fa-user-circle" aria-hidden="true"></i>
+                        </button>
+                        <ul class="notification-dropdown userprofile">
+                            <div class="dropdown-box">
+                                {% if user.is_authenticated %}
+                                <li>
+                                    <a class="dropdown-item align-items-center px-3" href="{% url 'my_profile' %}">
+                                        <i class="far fa-user" aria-hidden="true"></i>
+                                        <p>My Profile</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item align-items-center px-3" href="{% url 'logout' %}">
+                                        <i class="far fa-sign-out" aria-hidden="true"></i>
+                                        <p>Logout</p>
+                                    </a>
+                                </li>
+                                {% else %}
+
+                                <li>
+                                    <a class="dropdown-item align-items-center px-3" href="{% url 'login' %}">
+                                        <i class="far fa-sign-in" aria-hidden="true"></i>
+                                        <p>Login</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item align-items-center px-3" href="{% url 'register' %}">
+                                        <i class="far fa-user-plus" aria-hidden="true"></i>
+                                        <p>Register</p>
+                                    </a>
+                                </li>
+                                {% endif %}
+                            </div>
+                        </ul>
+                    </div>
+
+                <!-- notification panel -->
+
+                </span>
+            </div>
+        </nav>
+
+        <div id="preloader" style="opacity: 0; visibility: hidden;">
+            <img src="https://wedding-wonders.bugfinder.net/assets/themes/deepblue/images/love.gif" alt="loader" class="loader">
+        </div>
+
+        <a href="#" class="scroll-up" style="display: none;">
+            <i class="fal fa-chevron-double-up" aria-hidden="true"></i>
+        </a>
+
+        {% block content %}
+        {% endblock %}
+        <!-- footer -->
+        <footer class="footer-section">
+            <div class="container">
+                <div class="row gy-5 g-md-5">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="box box1">
+                            <a class="navbar-brand" href="https://wedding-wonders.bugfinder.net">
+                                <img src="{% static 'images/bg/logo.png' %}" alt="Wedding Wonders">
+                            </a>
+                            <p></p><p><span><span>7 Green Lake Street&nbsp;</span></span><span>Crawfordsville, IN 47933</span></p><p></p>
+                            <p>Email: info@metrimony.com</p>
+                            <p>Phone: +1 800 123 456 789</p>
+                            <div class="social-links">
+                                <a href="https://www.facebook.com/">
+                                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://twitter.com/">
+                                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://bd.linkedin.com/">
+                                    <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://www.instagram.com/">
+                                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="box">
+                            <h5>useful links</h5>
+                            <ul class="links">
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                            <li><a href="{% url 'about' %}">About</a></li>
+                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+               <div class="footer-bottom">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <p class="copyright">
+                            Copyright © 2024 <a href="https://wedding-wonders.bugfinder.net">Wedding Wonders</a> All Rights Reserved.                </p>
+                     </div>
+
+
+                  </div>
+               </div>
+            </div>
+            <span></span>
+            <img src="{% static 'images/bg/footer_bg.png' %}" alt="Footer image" class="flower">
+
+        </footer>
+
+        <script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+        <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+        <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+        <script src="{% static 'js/aos.js' %}"></script>
+        <script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
+        <script src="{% static 'js/notiflix-aio-2.7.0.min.js' %}"></script>
+        <script src="{% static 'js/pusher.min.js' %}"></script>
+        <script src="{% static 'js/vue.min.js' %}"></script>
+        <script src="{% static 'js/axios.min.js' %}"></script>
+        <script src="{% static 'js/script.js' %}"></script>
+        <script>
+            "use strict";
+            var root = document.querySelector(':root');
+            root.style.setProperty('--primary', '#f3ddcf');
+            root.style.setProperty('--secondary', '#fb846f');
+        </script>
+    </body>
+</html>

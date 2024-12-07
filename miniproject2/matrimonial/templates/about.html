@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+<!-- banner start-->
+<style>
+    .banner {
+        background: url("../../static/images/bg/banner1.jpg");
+        background-size: cover;
+    }
+</style>
+<div class="banner">
+    <div class="overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                <div class="header-text">
+                    <h2>About Us</h2>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- banner end -->
+
+<!-- about start -->
+<section class="about-section">
+        <div class="container">
+            <div class="row align-items-center justify-content-between gy-5 g-lg-5">
+                <div class="col-lg-6">
+                    <div class="img-box">
+                    <img class="about-img" src="{% static 'images/bg/about_img.jpg' %}" alt="about img">
+                    <img class="" src="{% static 'images/bg/about.png' %}" alt="about frame img">
+                    </div>
+                </div>
+                <style>
+                    ol li{
+                        padding-bottom: 10px;
+                    }
+                </style>
+                <div class="col-lg-6">
+                    <div class="text-box">
+                        <h2>About Us</h2>
+                        <p></p><p>Welcome to "WEDDING WONDERS", where we believe that every relationship begins with a meaningful connection. We are a trusted matrimonial platform dedicated to helping individuals find their life partners based on shared values, interests, and aspirations.</p>
+                        <p></p>
+                        <h3>Our Mission</h3>
+                        <p></p>
+                        <p>At "WEDDING WONDERS", our mission is to make the journey of finding love and companionship seamless and joyful. We aim to create a safe, reliable, and user-friendly platform where singles and families can connect, fostering relationships that last a lifetime.</p>
+                        <p></p>
+                        <h3>Why Choose Us?</h3>
+                        <p></p>
+                        <ol>
+                            <li><b>Authentic Profiles:</b> Each profile is carefully verified to ensure genuine connections.</li>
+                            <li><b>Advanced Matching:</b> Our intelligent matchmaking algorithm considers your preferences, lifestyle, and values to suggest the most compatible matches.</li>
+                            <li><b>Diverse Community:</b> We cater to individuals from various cultures, religions, and backgrounds, celebrating diversity in relationships.</li>
+                            <li><b>Privacy & Security:</b> Your personal information is handled with the utmost confidentiality and security, ensuring peace of mind.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- about end -->
+
+{% endblock %}

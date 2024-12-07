@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+<!-- banner start-->
+<style>
+    .banner {
+        background: url("../../static/images/bg/banner1.jpg");
+        background-size: cover;
+    }
+</style>
+<div class="banner">
+    <div class="overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                <div class="header-text">
+                    <h2>Story</h2>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- banner end -->
+<!-- story -->
+<section class="happy-stories">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="header-text">
+                    <h2>Happy Stories</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit id cupiditate. Repudiandae blanditiis ullam natus quas explicabo</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3" data-masonry="{&quot;percentPosition&quot;: true }" style="position: relative; height: 302.219px;">
+            <div class="col" style="position: absolute; left: 0%; top: 0px;">
+                <div class="img-box">
+                    <img src="{% static 'images/bg/story1.jpg' %}" alt="story img" class="img-fluid">
+                    <a href="{% url 'story_details' %}" class="hover-content">
+                        <div class="text-box">
+                            <h4>Mrs Hussy &amp; Hussy</h4>
+                            <h5>Sydney - 27 Sep, 2022</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col" style="position: absolute; left: 33.3329%; top: 0px;">
+                <div class="img-box">
+                    <img src="{% static 'images/bg/story2.jpg' %}" alt="story img" class="img-fluid">
+                    <a href="{% url 'story_details' %}" class="hover-content">
+                        <div class="text-box">
+                            <h4>Hemalin &amp; Smith</h4>
+                            <h5>Maldives - 08 Oct, 2022</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row py-5 mt-5">
+
+        </div>
+    </div>
+
+    <img src="{% static 'images/bg/story_bg.png' %}" alt="story image" class="flower aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-anchor-placement="center-bottom">
+</section>
+<!-- story end -->
+
+{% endblock %}

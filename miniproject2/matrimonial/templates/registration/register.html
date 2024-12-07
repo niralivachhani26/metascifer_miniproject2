@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+<!-- banner start-->
+<style>
+    .banner {
+        background: url("../../static/images/bg/banner1.jpg");
+        background-size: cover;
+    }
+</style>
+<div class="banner">
+    <div class="overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                <div class="header-text">
+                    <h2>Register</h2>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- banner end -->
+
+<!-- login start -->
+<section class="login-section">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button class="btn-flower" type="submit">sign up</button>
+
+                        <div class="bottom">Already have an account?<br>
+                            <a href="{% url 'login' %}">Sign In</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- login end -->
+
+{% endblock %}

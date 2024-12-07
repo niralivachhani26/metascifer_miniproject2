@@ -1,0 +1,286 @@
+{% extends 'base.html' %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+<!-- banner start-->
+<style>
+    .banner {
+        background: url("../../static/images/bg/banner1.jpg");
+        background-size: cover;
+    }
+</style>
+<div class="banner">
+    <div class="overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                <div class="header-text">
+                    <h2>My Profile</h2>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- banner end -->
+
+<!-- members start -->
+<section class="members-section">
+    <div class="container">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="alert alert-{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="row gy-5 g-md-4">
+
+                    <!------------------ Search sidebar ------------->
+            <div class="col-lg-3">
+                <div class="side-search-area">
+
+                    <div class="row g-3">
+
+                        <div class="img-box" style="margin-bottom:20px;">
+                            {% if user.profile_image %}
+                                <img src="{{ user.profile_image.url }}" class="" alt="member post image" style="width: inherit; height: 200px;">
+                            {% else %}
+                                        <img src="{% static 'images/bg/not_found.png' %}" class="" alt="member post image" height="194px" width="194px">
+                                    {% endif %}
+                        </div>
+
+                        <div class="col-md-12 form-group row">
+                            <label for="age_to" class="col-md-5">Name</label>
+                            <p class="col-md-7">{{ user.first_name }} {{ user.last_name }}</p></div>
+
+                        <div class="col-md-12 form-group row">
+                            <label for="member_id" class="col-md-5">Date of Birth</label>
+                            <p class="col-md-7">{{ user.dob }}</p>
+                        </div>
+
+                        <div class="col-md-12 form-group row">
+                            <label for="member_id" class="col-md-5">Gender</label>
+                            <p class="col-md-7">{{ user.gender }}</p>
+                        </div>
+
+                        <div class="col-md-12 form-group row">
+                            <label for="member_id" class="col-md-5">Height</label>
+                            <p class="col-md-7">{{ user.height }}cm</p>
+                        </div>
+
+                        <div class="col-md-12 form-group row">
+                            <label for="member_id" class="col-md-5">Weight</label>
+                            <p class="col-md-7">{{ user.weight }}km</p>
+                        </div>
+
+                        <div class="col-md-12 form-group row">
+                            <label for="member_id" class="col-md-5">Religion</label>
+                            <p class="col-md-7">{{ user.religion_type }}</p>
+                        </div>
+
+                        <div class="col-md-12 form-group row">
+                            <label for="member_id" class="col-md-5">Location</label>
+                            <p class="col-md-7">{{ user.location_type }}</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+                    <!------------------ Members Profile ------------->
+            <div class="col-lg-9">
+
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <button class="nav-link active" id="request-tab" data-bs-toggle="tab" data-bs-target="#request" type="button" role="tab" aria-controls="request" aria-selected="true">Request</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" id="sent-tab" data-bs-toggle="tab" data-bs-target="#sent" type="button" role="tab" aria-controls="sent" aria-selected="false">Sent Request</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" id="frds-tab" data-bs-toggle="tab" data-bs-target="#frds" type="button" role="tab" aria-controls="frds" aria-selected="false">Friends List</button>
+                    </li>
+
+                </ul>
+
+                                            <!------------------ Members Profile ------------->
+
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="request" role="tabpanel" aria-labelledby="request-tab">
+                        {% if received_requests  %}
+                        {% for user in received_requests %}
+                        <div class="member-box d-md-flex">
+                            <div class="img-box">
+                                {% if user.profile_image %}
+                                    <img src="{{ user.profile_image.url }}" class="" alt="member post image" height="194px" width="194px">
+                                {% else %}
+                                        <img src="{% static 'images/bg/not_found.png' %}" class="" alt="member post image" height="194px" width="194px">
+                                {% endif %}
+                            </div>
+
+                            <div>
+                                <h5 class="name">{{ user.first_name }} {{ user.last_name }}</h5>
+                                <div class="row g-2 mt-3 member-info">
+                                    <div class="col-6">
+                                        <span>age : {{ user.age }} years</span>
+                                    </div>
+                                    <div class="col-md-12 form-group row">
+                                       <span>gender : {{ user.gender }}</span>
+                                    </div>
+                                    <div class="col-6">
+                                        <span>height : {{ user.height }} cm</span>
+                                    </div>
+                                    <div class="col-6">
+                                        <span>weight : {{ user.weight }} kg</span>
+                                    </div>
+                                    <div class="col-6">
+                                        <span>religion : {{ user.religion_type }}</span>
+                                    </div>
+                                    <div class="col-6">
+                                        <span>location : {{ user.location_type }}</span>
+                                    </div>
+                                </div>
+
+
+                                <div class="button-group">
+
+                                    <a href="{% url 'respond_to_friend_request' user.id 'accept' %}">
+                                        <i class="fal fa-check-circle" aria-hidden="true"></i>
+                                        <span>Accept</span>
+                                    </a>
+
+                                    <a href="{% url 'respond_to_friend_request' user.id 'reject' %}">
+                                        <i class="fas fa-times-circle" aria-hidden="true"></i>
+                                        <span>Reject</span>
+                                    </a>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="row py-5">
+                            <p>No Records Found!!</p>
+
+                        </div>
+                        {% endif %}
+
+                    </div>
+                    <div class="tab-pane fade" id="sent" role="tabpanel" aria-labelledby="sent-tab">
+                        {% if sent_requests  %}
+                        {% for user in sent_requests %}
+
+                            <div class="member-box d-md-flex">
+                                <div class="img-box">
+                                    {% if user.profile_image %}
+                                        <img src="{{ user.profile_image.url }}" class="" alt="member post image" height="194px" width="194px">
+                                    {% else %}
+                                        <img src="{% static 'images/bg/not_found.png' %}" class="" alt="member post image" height="194px" width="194px">
+                                    {% endif %}
+                                </div>
+
+                                <div>
+                                    <h5 class="name">{{ user.first_name }} {{ user.last_name }}</h5>
+                                    <div class="row g-2 mt-3 member-info">
+                                        <div class="col-6">
+                                            <span>age : {{ user.age }} years</span>
+                                        </div>
+                                        <div class="col-md-12 form-group row">
+                                            <span>gender : {{ user.gender }}</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <span>height : {{ user.height }} cm</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <span>weight : {{ user.weight }} kg</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <span>religion : {{ user.religion_type }}</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <span>location : {{ user.location_type }}</span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="button-group">
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="row py-5">
+                            <p>No Records Found!!</p>
+
+                        </div>
+                        {% endif %}
+                    </div>
+
+                        <div class="tab-pane fade" id="frds" role="tabpanel" aria-labelledby="frds-tab">
+                        {% if friends_list %}
+                        {% for friend in friends_list %}
+
+                            <div class="member-box d-md-flex">
+                                <div class="img-box">
+                                    {% if friend.profile_image %}
+                                        <img src="{{ friend.profile_image.url }}" class="" alt="member post image" height="194px" width="194px">
+                                    {% else %}
+                                        <img src="{% static 'images/bg/not_found.png' %}" class="" alt="member post image" height="194px" width="194px">
+                                    {% endif %}
+                                </div>
+
+                                <div>
+                                    <h5 class="name">{{ friend.first_name }} {{ friend.last_name }}</h5>
+                                    <div class="row g-2 mt-3 member-info">
+                                        <div class="col-6">
+                                            <span>age : {{ friend.age }} years</span>
+                                        </div>
+                                        <div class="col-md-12 form-group row">
+                                            <span>gender : {{ user.gender }}</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <span>height : {{ friend.height }} cm</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <span>weight : {{ friend.weight }} kg</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <span>religion : {{ friend.religion }}</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <span>location : {{ friend.location }}</span>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+
+                            </div>
+                        {% endfor %}
+                            {% else %}
+                        <div class="row py-5">
+                            <p>No Records Found!!</p>
+
+                        </div>
+                        {% endif %}
+                     </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- member end -->
+
+{% endblock %}
